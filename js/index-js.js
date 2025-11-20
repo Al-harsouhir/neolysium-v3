@@ -450,3 +450,23 @@ document.querySelector('.btn-submit').addEventListener('click', function(e) {
         }, 2000);
     }
 });
+
+// contact webhook js
+function RequestDiscord() {
+    let pseudo = document.getElementById("pseudo").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+
+    const RequestDiscord = new XMLHttpRequest();
+    RequestDiscord.open("POST", "https://discord.com/api/webhooks/1415363525123248168/DpojBUDlTJrCFu2vwvTLTcfdQR--gI8vRC4MGfDBqmCSWrRit3J4L9bGkOqnH4VxN9ch")
+    RequestDiscord.setRequestHeader('Content-type', 'application/json')
+
+    const content = {
+    content: `Pseudo : ${pseudo}\nE-Mail : ${email}\nMessage : ${message}`
+    };
+
+    console.log(pseudo, message);
+    
+    RequestDiscord.send(JSON.stringify(content));
+    debugger
+}
