@@ -554,6 +554,7 @@
 
         .mobile-menu-cta {
             padding: 2rem;
+            margin-top: 3.2rem;
             flex-shrink: 0;
             border-bottom: 1px solid var(--border-color);
         }
