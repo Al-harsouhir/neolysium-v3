@@ -462,7 +462,7 @@ function RequestDiscord() {
     RequestDiscord.setRequestHeader('Content-type', 'application/json')
 
     const content = {
-    content: `Pseudo : ${pseudo}\nE-Mail : ${email}\nMessage : ${message}`
+    content: `## **Nouveaux message du support ! :**\n🆔 **Pseudo :** ${pseudo}\n📩 **E-Mail :** ${email}💭\n**Message : ** ${message}\n||<@889189323847651369>||`
     };
 
     console.log(pseudo, message);
