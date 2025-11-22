@@ -1155,7 +1155,7 @@
         }
 
         .pricing-card.featured::before {
-            content: 'MOST POPULAR';
+            content: 'PLUS POPULAIRE';
             position: absolute;
             top: -15px;
             left: 50%;
