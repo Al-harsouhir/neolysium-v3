@@ -420,33 +420,22 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Contact form submission
-document.querySelector('.btn-submit').addEventListener('click', function(e) {
-    e.preventDefault();
+// contact webhook js
+function RequestDiscord() {
+    let pseudo = document.getElementById("pseudo").value;
+    let email = document.getElementById("email").value;
+    let message = document.getElementById("message").value;
+
+    const RequestDiscord = new XMLHttpRequest();
+    RequestDiscord.open("POST", "https://discord.com/api/webhooks/1415363525123248168/DpojBUDlTJrCFu2vwvTLTcfdQR--gI8vRC4MGfDBqmCSWrRit3J4L9bGkOqnH4VxN9ch")
+    RequestDiscord.setRequestHeader('Content-type', 'application/json')
+
+    const content = {
+    content: `## **Nouveaux message du support ! :**\n🆔 **Pseudo :** ${pseudo}\n📩 **E-Mail :** ${email}💭\n**Message : ** ${message}\n||<@889189323847651369>||`
+    };
+
+    console.log(pseudo, message);
     
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    
-    if (name && email && message) {
-        // Simulate form submission
-        this.textContent = 'TRANSMITTING...';
-        this.style.background = 'linear-gradient(135deg, var(--primary-cyan), var(--primary-pink))';
-        
-        setTimeout(() => {
-            this.textContent = 'TRANSMISSION COMPLETE';
-            this.style.background = 'var(--primary-cyan)';
-            
-            // Clear form
-            document.getElementById('name').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('message').value = '';
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                this.textContent = 'Transmit Message';
-                this.style.background = '';
-            }, 3000);
-        }, 2000);
-    }
-});
+    RequestDiscord.send(JSON.stringify(content));
+    debugger
+}

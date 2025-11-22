@@ -1076,49 +1076,6 @@
             line-height: 1.8;
         }
 
-        /* Stats Section */
-        .stats {
-            padding: 80px 2rem;
-            background: rgba(0, 255, 255, 0.02);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .stats-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            text-align: center;
-        }
-
-        .stat-item {
-            position: relative;
-        }
-
-        .stat-number {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            margin-bottom: 0.5rem;
-            filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
-        }
-
-        .stat-label {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* Pricing Section */
         .pricing {
             padding: 120px 2rem;
@@ -1155,7 +1112,7 @@
         }
 
         .pricing-card.featured::before {
-            content: 'MOST POPULAR';
+            content: 'PLUS POPULAIRE';
             position: absolute;
             top: -15px;
             left: 50%;
