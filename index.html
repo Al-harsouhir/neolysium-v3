@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Néolysium-Accuille</title>
     <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="svg" href="images/Néolysium-logo.svg">
 </head>
 <body id="top">
     <!-- Background Elements -->
@@ -199,7 +200,7 @@
                 <p class="section-subtitle">Envoyez une transmission à travers le réseau neuronal.</p>
             </div>
             
-            <div class="contact-form-wrapper">
+            <form class="contact-form-wrapper" id="contact-form"> 
                 <div class="contact-form">
                     <div class="form-group">
                         <label for="pseudo">Pseudo Discord</label>
@@ -216,9 +217,10 @@
                         <textarea id="message" name="message" rows="5" placeholder="Écrit ton message..." required></textarea>
                     </div>
                     
-                    <button type="button" class="btn-primary btn-submit" onclick="RequestDiscord()">Transmet ton Message</button>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0RM-38Ob8yl-i5"></div>
+                    <button type="submit" class="btn-primary btn-submit">Transmet ton Message</button>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -226,9 +228,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#">Politique Confidentialité</a>
+                <a href="legal.html#confidentialite">Politique Confidentialité</a>
                 <span class="footer-separator">•</span>
-                <a href="#">Conditions d'utilisation</a>
+                <a href="legal.html#cgv">Conditions générale de vente</a>
                 <span class="footer-separator">•</span>
                 <a href="#features">Documentation</a>
                 <span class="footer-separator">•</span>
@@ -242,5 +244,6 @@
 
     <script src="js/index-js.js"></script>
     <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>

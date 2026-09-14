@@ -420,22 +420,49 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// contact webhook js
-function RequestDiscord() {
-    let pseudo = document.getElementById("pseudo").value;
-    let email = document.getElementById("email").value;
-    let message = document.getElementById("message").value;
+const workerURL = "https://contact-form-relay.chatmimi329.workers.dev";
 
-    const RequestDiscord = new XMLHttpRequest();
-    RequestDiscord.open("POST", "https://discord.com/api/webhooks/1415363525123248168/DpojBUDlTJrCFu2vwvTLTcfdQR--gI8vRC4MGfDBqmCSWrRit3J4L9bGkOqnH4VxN9ch")
-    RequestDiscord.setRequestHeader('Content-type', 'application/json')
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-    const content = {
-    content: `## **Nouveaux message du support ! :**\n🆔 **Pseudo :** ${pseudo}\n📩 **E-Mail :** ${email}💭\n**Message : ** ${message}\n||<@889189323847651369>||`
-    };
+    const pseudo = document.getElementById("pseudo").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+    const turnstileToken = document.querySelector('[name="cf-turnstile-response"]').value;
 
-    console.log(pseudo, message);
-    
-    RequestDiscord.send(JSON.stringify(content));
-    debugger
-}
+    if (!pseudo || !email || !message) {
+        alert("Merci de remplir tous les champs.");
+        return;
+    }
+    if (!turnstileToken) {
+        alert("Merci de valider le captcha.");
+        return;
+    }
+
+    const submitBtn = document.querySelector(".btn-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Envoi en cours...";
+
+    try {
+        const res = await fetch(workerURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: pseudo, email: email, message: message, turnstileToken })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            alert(`Message transmis avec succès ! Numéro de commande : ${data.orderNumber}`);
+            document.getElementById("contact-form").reset();
+            turnstile.reset();
+        } else {
+            alert("Erreur lors de l'envoi. Réessaie plus tard.");
+        }
+    } catch (err) {
+        alert("Erreur réseau. Vérifie ta connexion.");
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Transmet ton Message";
+    }
+});
