@@ -422,20 +422,91 @@ document.head.appendChild(style);
 
 const workerURL = "https://contact-form-relay.chatmimi329.workers.dev";
 
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
+// --- Gestion des erreurs par champ (style du site, plus d'alert()) ---
+
+function setFieldError(fieldId, message) {
+    const group = document.getElementById(fieldId + "-group");
+    const errorEl = document.getElementById(fieldId + "-error");
+    if (!errorEl) return;
+
+    errorEl.textContent = message;
+
+    if (message) {
+        errorEl.classList.add("visible");
+        if (group) group.classList.add("has-error");
+    } else {
+        errorEl.classList.remove("visible");
+        if (group) group.classList.remove("has-error");
+    }
+}
+
+function clearAllFieldErrors() {
+    ["pseudo", "email", "message"].forEach(id => setFieldError(id, ""));
+    const turnstileError = document.getElementById("turnstile-error");
+    if (turnstileError) {
+        turnstileError.textContent = "";
+        turnstileError.classList.remove("visible");
+    }
+}
+
+function isValidEmail(value) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+// Effacer l'erreur d'un champ dès que l'utilisateur le corrige
+["pseudo", "email", "message"].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener("input", () => setFieldError(id, ""));
+    }
+});
+
+const contactFormEl = document.getElementById("contact-form");
+if (contactFormEl) {
+contactFormEl.addEventListener("submit", async function(e) {
     e.preventDefault();
+
+    clearAllFieldErrors();
 
     const pseudo = document.getElementById("pseudo").value.trim();
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
     const turnstileToken = document.querySelector('[name="cf-turnstile-response"]').value;
 
-    if (!pseudo || !email || !message) {
-        alert("Merci de remplir tous les champs.");
-        return;
+    let hasError = false;
+    let firstInvalidField = null;
+
+    if (!pseudo) {
+        setFieldError("pseudo", "Pseudo Discord manquant.");
+        hasError = true;
+        firstInvalidField = firstInvalidField || "pseudo";
     }
+
+    if (!email) {
+        setFieldError("email", "E-mail manquant.");
+        hasError = true;
+        firstInvalidField = firstInvalidField || "email";
+    } else if (!isValidEmail(email)) {
+        setFieldError("email", "Format d'e-mail invalide.");
+        hasError = true;
+        firstInvalidField = firstInvalidField || "email";
+    }
+
+    if (!message) {
+        setFieldError("message", "Description de la commande manquante.");
+        hasError = true;
+        firstInvalidField = firstInvalidField || "message";
+    }
+
     if (!turnstileToken) {
-        alert("Merci de valider le captcha.");
+        setFieldError("turnstile", "Merci de valider le captcha avant d'envoyer.");
+        hasError = true;
+    }
+
+    if (hasError) {
+        if (firstInvalidField) {
+            document.getElementById(firstInvalidField).focus();
+        }
         return;
     }
 
@@ -453,16 +524,51 @@ document.getElementById("contact-form").addEventListener("submit", async functio
         const data = await res.json();
 
         if (res.ok) {
-            alert(`Message transmis avec succès ! Numéro de commande : ${data.orderNumber}`);
+            // On transmet le récap de la commande à la page de confirmation
+            sessionStorage.setItem("neolysium_last_order", JSON.stringify({
+                orderNumber: data.orderNumber,
+                pseudo: pseudo,
+                email: email,
+                message: message
+            }));
+
             document.getElementById("contact-form").reset();
-            turnstile.reset();
+            if (typeof turnstile !== "undefined") turnstile.reset();
+
+            window.location.href = "confirmation.html";
         } else {
-            alert("Erreur lors de l'envoi. Réessaie plus tard.");
+            setFieldError("message", "");
+            const turnstileError = document.getElementById("turnstile-error");
+            if (turnstileError) {
+                turnstileError.textContent = "Erreur lors de l'envoi. Réessaie plus tard.";
+                turnstileError.classList.add("visible");
+            }
         }
     } catch (err) {
-        alert("Erreur réseau. Vérifie ta connexion.");
+        const turnstileError = document.getElementById("turnstile-error");
+        if (turnstileError) {
+            turnstileError.textContent = "Erreur réseau. Vérifie ta connexion.";
+            turnstileError.classList.add("visible");
+        }
     } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Transmet ton Message";
+        submitBtn.textContent = "Envoyer ma Commande";
     }
 });
+}
+// Mise à jour automatique de l'année dans le footer
+document.querySelectorAll(".current-year").forEach(el => {
+    el.textContent = new Date().getFullYear();
+});
+
+// Bouton "Retour en haut"
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+if (scrollTopBtn) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) {
+            scrollTopBtn.classList.add("visible");
+        } else {
+            scrollTopBtn.classList.remove("visible");
+        }
+    });
+}

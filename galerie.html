@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Néolysium — Galerie</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="svg" href="images/Néolysium-logo.svg">
+</head>
+<body id="top">
+    <!-- Background Elements -->
+    <section>
+        <div class="cyber-bg">
+            <div class="cyber-gradient"></div>
+            <div class="matrix-rain" id="matrixRain"></div>
+        </div>
+
+        <div class="particles" id="particlesContainer"></div>
+
+        <div class="data-streams" id="dataStreams"></div>
+
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+        <div class="grid-overlay">
+            <div class="grid-lines"></div>
+            <div class="grid-glow"></div>
+        </div>
+
+        <div class="scanlines"></div>
+        <div class="noise-overlay"></div>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#top" class="logo">NéoLysum</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Singularité</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="index.html#commande">Commande</a></li>
+            </ul>
+            <div class="nav-bottom">
+                <a href="index.html#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuBtn">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <section>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <a href="index.html#top" class="mobile-menu-logo">Néolysium</a>
+                <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+            </div>
+            <nav class="mobile-menu-nav">
+                <ul>
+                    <li><a href="index.html#features">Singularité</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="index.html#commande">Commande</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-cta">
+                <a href="index.html#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero -->
+    <section class="legal-hero">
+        <h1 class="section-title">Galerie</h1>
+        <p class="section-subtitle">Un aperçu de ce que Néolysium peut construire pour votre communauté.</p>
+    </section>
+
+    <section class="gallery-page">
+
+        <!-- Réalisations clients -->
+        <div class="gallery-section">
+            <div class="gallery-section-heading">
+                <h2>Réalisations</h2>
+                <p>Des serveurs livrés à des clients réels.</p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- Carte réalisation #1 -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-1">
+                        <div class="gallery-card-icon">[PP]</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>[Nom du serveur client]</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-client">Réalisation client</span>
+                            <span class="gallery-tag">[Thème, ex: Gaming]</span>
+                        </div>
+                        <p>[Courte description : type de communauté, ce que le client voulait, ambiance générale du serveur.]</p>
+                        <ul class="gallery-features">
+                            <li>[Structure de salons sur mesure]</li>
+                            <li>[Bots configurés]</li>
+                            <li>[Système de rôles / niveaux]</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <!-- À remplacer par le vrai lien d'invitation UNIQUEMENT si le client est d'accord -->
+                            <span class="gallery-cta-pending">Aperçu sur demande</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carte réalisation #2 -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-2">
+                        <div class="gallery-card-icon">[PP]</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>[Nom du serveur client]</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-client">Réalisation client</span>
+                            <span class="gallery-tag">[Thème]</span>
+                        </div>
+                        <p>[Description courte de la réalisation.]</p>
+                        <ul class="gallery-features">
+                            <li>[Élément livré 1]</li>
+                            <li>[Élément livré 2]</li>
+                            <li>[Élément livré 3]</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <span class="gallery-cta-pending">Aperçu sur demande</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Serveurs de démonstration -->
+        <div class="gallery-section">
+            <div class="gallery-section-heading">
+                <h2>Serveurs de Démonstration</h2>
+                <p>Rejoins-les librement pour te faire une idée concrète du résultat.</p>
+            </div>
+
+            <div class="gallery-grid">
+
+                <!-- Démo 1 : Gaming -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-1">
+                        <div class="gallery-card-icon">AG</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>Aurora Gaming</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-demo">Démo</span>
+                            <span class="gallery-tag">Gaming</span>
+                        </div>
+                        <p>Une communauté gaming généraliste : recherche de coéquipiers, partage de clips et suivi de tournois internes.</p>
+                        <ul class="gallery-features">
+                            <li>Salons LFG classés par jeu</li>
+                            <li>Bot de tournois &amp; classements</li>
+                            <li>Système de rôles &amp; niveaux d'activité</li>
+                            <li>Salon clips/highlights</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <a href="[LIEN D'INVITATION DISCORD]" target="_blank" rel="noopener" class="btn-secondary">Rejoindre le serveur</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Démo 2 : Créateurs de contenu -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-2">
+                        <div class="gallery-card-icon">CH</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>Créateur Hub</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-demo">Démo</span>
+                            <span class="gallery-tag">Créateurs</span>
+                        </div>
+                        <p>Pensé pour les streamers et créateurs de contenu : partage de vidéos, retours entre créateurs et mise en avant des lives.</p>
+                        <ul class="gallery-features">
+                            <li>Salon de partage &amp; feedback</li>
+                            <li>Annonces automatiques de live</li>
+                            <li>Espace collab &amp; réseau</li>
+                            <li>Portfolio des membres</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <a href="[LIEN D'INVITATION DISCORD]" target="_blank" rel="noopener" class="btn-secondary">Rejoindre le serveur</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Démo 3 : Entraide étudiante -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-3">
+                        <div class="gallery-card-icon">SN</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>StudyNet</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-demo">Démo</span>
+                            <span class="gallery-tag">Étude</span>
+                        </div>
+                        <p>Un espace d'entraide entre étudiants : salons par matière, partage de ressources et organisation de groupes de travail.</p>
+                        <ul class="gallery-features">
+                            <li>Salons classés par matière</li>
+                            <li>Bot de rappel de devoirs</li>
+                            <li>Espace ressources &amp; fiches</li>
+                            <li>Groupes de travail vocaux</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <a href="[LIEN D'INVITATION DISCORD]" target="_blank" rel="noopener" class="btn-secondary">Rejoindre le serveur</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Démo 4 : Vitrine Néolysium (optionnel) -->
+                <div class="gallery-card">
+                    <div class="gallery-card-banner gallery-gradient-4">
+                        <div class="gallery-card-icon">NL</div>
+                    </div>
+                    <div class="gallery-card-body">
+                        <h3>Néolysium HQ</h3>
+                        <div class="gallery-tags">
+                            <span class="gallery-tag tag-demo">Démo</span>
+                            <span class="gallery-tag">Vitrine</span>
+                        </div>
+                        <p>Le serveur officiel Néolysium, dans notre propre style cyberpunk — support client et communauté.</p>
+                        <ul class="gallery-features">
+                            <li>Design 100% dans l'identité Néolysium</li>
+                            <li>Salon support &amp; suivi de commande</li>
+                            <li>Annonces des nouvelles offres</li>
+                        </ul>
+                        <div class="gallery-card-cta">
+                            <a href="[LIEN D'INVITATION DISCORD]" target="_blank" rel="noopener" class="btn-secondary">Rejoindre le serveur</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="legal.html#confidentialite">Politique Confidentialité</a>
+                <span class="footer-separator">•</span>
+                <a href="legal.html#cgv">Conditions d'utilisation</a>
+                <span class="footer-separator">•</span>
+                <a href="index.html#features">Documentation</a>
+                <span class="footer-separator">•</span>
+                <a href="index.html#commande">Contact Support</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span class="current-year"></span> Néolysium. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#top" class="scroll-top-btn" id="scrollTopBtn" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <script src="js/index-js.js"></script>
+    <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Néolysium — Commande confirmée</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="svg" href="images/Néolysium-logo.svg">
+</head>
+<body id="top">
+    <!-- Background Elements -->
+    <section>
+        <div class="cyber-bg">
+            <div class="cyber-gradient"></div>
+            <div class="matrix-rain" id="matrixRain"></div>
+        </div>
+
+        <div class="particles" id="particlesContainer"></div>
+
+        <div class="data-streams" id="dataStreams"></div>
+
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+        <div class="grid-overlay">
+            <div class="grid-lines"></div>
+            <div class="grid-glow"></div>
+        </div>
+
+        <div class="scanlines"></div>
+        <div class="noise-overlay"></div>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html#top" class="logo">NéoLysum</a>
+            <ul class="nav-links">
+                <li><a href="index.html#features">Singularité</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="index.html#commande">Commande</a></li>
+            </ul>
+            <div class="nav-bottom">
+                <a href="index.html#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuBtn">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <section>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <a href="index.html#top" class="mobile-menu-logo">Néolysium</a>
+                <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+            </div>
+            <nav class="mobile-menu-nav">
+                <ul>
+                    <li><a href="index.html#features">Singularité</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="index.html#commande">Commande</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-cta">
+                <a href="index.html#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation -->
+    <section class="confirmation-page">
+        <div class="confirmation-container">
+
+            <div id="confirmation-content">
+                <!-- Rempli en JS si une commande vient d'être passée -->
+            </div>
+
+            <div id="confirmation-empty" class="confirmation-empty" style="display:none;">
+                <p>Aucune commande récente à afficher. Si tu viens de valider une commande, vérifie que tu n'as pas rechargé cette page directement.</p>
+            </div>
+
+            <a href="index.html#top" class="btn-secondary">Retour à l'accueil</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="legal.html#confidentialite">Politique Confidentialité</a>
+                <span class="footer-separator">•</span>
+                <a href="legal.html#cgv">Conditions d'utilisation</a>
+                <span class="footer-separator">•</span>
+                <a href="index.html#features">Documentation</a>
+                <span class="footer-separator">•</span>
+                <a href="index.html#commande">Contact Support</a>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span class="current-year"></span> Néolysium. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#top" class="scroll-top-btn" id="scrollTopBtn" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <script src="js/index-js.js"></script>
+    <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
+
+    <script>
+        (function () {
+            var raw = sessionStorage.getItem('neolysium_last_order');
+            var contentEl = document.getElementById('confirmation-content');
+            var emptyEl = document.getElementById('confirmation-empty');
+
+            if (!raw) {
+                emptyEl.style.display = 'block';
+                return;
+            }
+
+            var order;
+            try {
+                order = JSON.parse(raw);
+            } catch (e) {
+                emptyEl.style.display = 'block';
+                return;
+            }
+
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.textContent = str || '';
+                return div.innerHTML;
+            }
+
+            contentEl.innerHTML =
+                '<div class="confirmation-icon"><i class="fa-solid fa-check"></i></div>' +
+                '<h1 class="confirmation-title">Commande enregistrée</h1>' +
+                '<p class="confirmation-subtitle">Merci ! Ta commande a bien été transmise. On te recontacte directement sur Discord, à l\'adresse indiquée ci-dessous, pour la suite.</p>' +
+                '<div class="confirmation-order-number">N° ' + escapeHtml(order.orderNumber || '—') + '</div>' +
+                '<div class="confirmation-recap">' +
+                    '<h3>Récapitulatif de ta demande</h3>' +
+                    '<div class="confirmation-recap-row">' +
+                        '<span class="confirmation-recap-label">Pseudo Discord</span>' +
+                        '<span class="confirmation-recap-value">' + escapeHtml(order.pseudo) + '</span>' +
+                    '</div>' +
+                    '<div class="confirmation-recap-row">' +
+                        '<span class="confirmation-recap-label">E-mail</span>' +
+                        '<span class="confirmation-recap-value">' + escapeHtml(order.email) + '</span>' +
+                    '</div>' +
+                    '<div class="confirmation-recap-row">' +
+                        '<span class="confirmation-recap-label">Description</span>' +
+                        '<span class="confirmation-recap-value">' + escapeHtml(order.message) + '</span>' +
+                    '</div>' +
+                '</div>';
+
+            // On évite qu'un rechargement de la page réaffiche la même commande indéfiniment
+            sessionStorage.removeItem('neolysium_last_order');
+        })();
+    </script>
+</body>
+</html>
