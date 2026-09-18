@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Néolysium-Accuille</title>
+    <title>Néolysium - Accueil</title>
     <link href="css/styles.css" rel="stylesheet">
     <link rel="icon" type="svg" href="images/Néolysium-logo.svg">
 </head>
@@ -38,10 +38,11 @@
             <a href="#top" class="logo">NéoLysum</a>
             <ul class="nav-links">
                 <li><a href="#features">Singularité</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="#commande">Commande</a></li>
             </ul>
             <div class="nav-bottom">
-                <a href="#pricing" class="cyber-button">Zone de Commande</a>
+                <a href="#commande" class="cyber-button">Zone de Commande</a>
             </div>
             <button class="mobile-menu-button" id="mobileMenuBtn">
                 <div class="hamburger">
@@ -64,11 +65,12 @@
             <nav class="mobile-menu-nav">
                 <ul>
                     <li><a href="#features">Singularité</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
+                    <li><a href="#commande">Commande</a></li>
                 </ul>
             </nav>
             <div class="mobile-menu-cta">
-                <a href="#pricing" class="cyber-button">Zone de Commande</a>
+                <a href="#commande" class="cyber-button">Zone de Commande</a>
             </div>
         </div>
     </section>
@@ -81,8 +83,8 @@
             </h1>
             <p class="hero-subtitle">Nous créons pour vous des serveurs Discord personnalisés et nous assemblons votre PC adaptés à vos besoins. Rapide et créatif, Néolysium transforme vos idées en réalité.</p>
             <div class="hero-buttons">
-                <a href="https://forgebot.neolysium.eu/index.html" class="btn-primary">Serveur IA</a>
-                <a href="#pricing" class="btn-secondary">Commander</a>
+                <a href="#commande" class="btn-primary">Commander</a>
+                <a href="#pricing" class="btn-secondary">Offres</a>
             </div>
         </div>
     </section>
@@ -157,21 +159,24 @@
                     <a href="https://forgebot.neolysium.eu/generator.html" class="btn-secondary">Commander</a>
                 </div>
                 
-                <div class="pricing-card featured">
-                    <div class="plan-name">Overclock</div>
-                    <div class="plan-price">15€</div>
-                    <div class="plan-period">par Néolysium</div>
-                    <ul class="plan-features">
-                        <li>Création complète des salons et catégories</li>
-                        <li>Mise en place des rôles + permissions de base</li>
-                        <li>Organisation propre et claire du serveur</li>
-                        <li>Configuration minimale pour que tout fonctionne directement</li>
-                        <li>Ajout de bots utiles</li>
-                        <li>Configuration complète des bots</li>
-                        <li>Création d’un règlement</li>
-                        <li>Conseils pour améliorer et faire évoluer le serveur</li>
-                    </ul>
-                    <a href="#" class="btn-primary">Commander</a>
+                <div class="pricing-card-wrap">
+                    <div class="popular-badge">Plus populaire</div>
+                    <div class="pricing-card featured">
+                        <div class="plan-name">Overclock</div>
+                        <div class="plan-price">15€</div>
+                        <div class="plan-period">par Néolysium</div>
+                        <ul class="plan-features">
+                            <li>Création complète des salons et catégories</li>
+                            <li>Mise en place des rôles + permissions de base</li>
+                            <li>Organisation propre et claire du serveur</li>
+                            <li>Configuration minimale pour que tout fonctionne directement</li>
+                            <li>Ajout de bots utiles</li>
+                            <li>Configuration complète des bots</li>
+                            <li>Création d’un règlement</li>
+                            <li>Conseils pour améliorer et faire évoluer le serveur</li>
+                        </ul>
+                        <a href="#commande" class="btn-primary">Commander</a>
+                    </div>
                 </div>
                 
                 <div class="pricing-card">
@@ -186,39 +191,43 @@
                         <li>Ajout de bots utiles</li>
                         <li>Configuration complète des bots</li>
                     </ul>
-                    <a href="#" class="btn-secondary">Commander</a>
+                    <a href="#commande" class="btn-secondary">Commander</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact fade-up" id="contact">
+    <!-- Commande Section -->
+    <section class="contact fade-up" id="commande">
         <div class="contact-container">
             <div class="section-header">
-                <h2 class="section-title">INITIALISER LE CONTACT</h2>
-                <p class="section-subtitle">Envoyez une transmission à travers le réseau neuronal.</p>
+                <h2 class="section-title">Passe ta Commande</h2>
+                <p class="section-subtitle">Transmets les détails de ta commande à travers le réseau neuronal — on te recontacte directement sur Discord.</p>
             </div>
             
-            <form class="contact-form-wrapper" id="contact-form"> 
+            <form class="contact-form-wrapper" id="contact-form" novalidate>
                 <div class="contact-form">
-                    <div class="form-group">
+                    <div class="form-group" id="pseudo-group">
                         <label for="pseudo">Pseudo Discord</label>
-                        <input type="text" id="pseudo" name="pseudo" placeholder="arsenale" required>
+                        <input type="text" id="pseudo" name="pseudo" placeholder="arsenale">
+                        <span class="field-error" id="pseudo-error"></span>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group" id="email-group">
                         <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="your.id@neolysium.eu" required>
+                        <input type="email" id="email" name="email" placeholder="your.id@neolysium.eu">
+                        <span class="field-error" id="email-error"></span>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Écrit ton message..." required></textarea>
+                    <div class="form-group" id="message-group">
+                        <label for="message">Description de ta commande</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décris le serveur ou la config que tu veux (offre choisie, style, besoins particuliers...)"></textarea>
+                        <span class="field-error" id="message-error"></span>
                     </div>
                     
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0RM-38Ob8yl-i5"></div>
-                    <button type="submit" class="btn-primary btn-submit">Transmet ton Message</button>
+                    <span class="field-error" id="turnstile-error"></span>
+                    <button type="submit" class="btn-primary btn-submit">Envoyer ma Commande</button>
                 </div>
             </form>
         </div>
@@ -230,17 +239,19 @@
             <div class="footer-links">
                 <a href="legal.html#confidentialite">Politique Confidentialité</a>
                 <span class="footer-separator">•</span>
-                <a href="legal.html#cgv">Conditions générale de vente</a>
+                <a href="legal.html#cgv">Conditions d'utilisation</a>
                 <span class="footer-separator">•</span>
                 <a href="#features">Documentation</a>
                 <span class="footer-separator">•</span>
-                <a href="#contact">Contact Support</a>
+                <a href="#commande">Contact Support</a>
             </div>
             <div class="footer-bottom">
-                <p>2025 Néolysium.</p>
+                <p>© <span class="current-year"></span> Néolysium. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
+
+    <a href="#top" class="scroll-top-btn" id="scrollTopBtn" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></a>
 
     <script src="js/index-js.js"></script>
     <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
