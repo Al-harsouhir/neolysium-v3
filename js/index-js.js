@@ -556,6 +556,17 @@ contactFormEl.addEventListener("submit", async function(e) {
     }
 });
 }
+// Pré-remplissage de la description de commande selon l'offre choisie
+document.querySelectorAll(".plan-cta[data-plan]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const messageField = document.getElementById("message");
+        if (messageField && !messageField.value.trim()) {
+            const plan = btn.getAttribute("data-plan");
+            messageField.value = `Bonjour, je suis intéressé(e) par l'offre ${plan}. `;
+        }
+    });
+});
+
 // Mise à jour automatique de l'année dans le footer
 document.querySelectorAll(".current-year").forEach(el => {
     el.textContent = new Date().getFullYear();

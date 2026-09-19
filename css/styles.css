@@ -1165,6 +1165,13 @@
             text-shadow: 0 0 20px var(--primary-cyan);
         }
 
+        .plan-price.quote {
+            font-size: 1.8rem;
+            color: var(--primary-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .plan-period {
             color: var(--text-secondary);
             margin-bottom: 3rem;
@@ -1192,6 +1199,43 @@
             left: 0;
             color: var(--primary-cyan);
             font-size: 0.8rem;
+        }
+
+        /* Cartes "étape du processus" (flanquent l'offre Kernel) */
+        .step-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .step-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--primary-cyan);
+            opacity: 0.35;
+            text-shadow: 0 0 20px var(--primary-cyan);
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+        }
+
+        .step-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        .step-card .plan-features {
+            flex: 1;
         }
 
         /* Contact Section */
