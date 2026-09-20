@@ -1136,6 +1136,11 @@
             white-space: nowrap;
             clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
             z-index: 5;
+            transition: transform 0.4s ease;
+        }
+
+        .pricing-card-wrap:hover .popular-badge {
+            transform: translateX(-50%) translateY(-10px);
         }
 
         .pricing-card:hover {
