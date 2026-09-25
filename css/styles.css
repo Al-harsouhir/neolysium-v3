@@ -21,6 +21,8 @@
             --text-secondary: #a1a1aa;
             --primary-cyan: #00ffff;
             --primary-pink: #ff00ff;
+            --primary-green: #0DEAA8;
+            --secondary-green: #006B4F;
         }
 
         html {
@@ -2029,7 +2031,7 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
             gap: 2rem;
         }
 
@@ -2059,8 +2061,8 @@
 
         .gallery-gradient-1 { background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple)); }
         .gallery-gradient-2 { background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple)); }
-        .gallery-gradient-3 { background: linear-gradient(135deg, var(--primary-orange), var(--primary-pink)); }
-        .gallery-gradient-4 { background: linear-gradient(135deg, var(--primary-cyan), var(--secondary-amber)); }
+        .gallery-gradient-3 { background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); }
+        .gallery-gradient-4 { background: linear-gradient(135deg, var(--primary-cyan), var(--primary-pink)); }
 
         .gallery-card-icon {
             width: 64px;
@@ -2157,6 +2159,7 @@
         .gallery-card-cta {
             text-align: center;
             width: 100%;
+            margin-top: 0.5rem;
         }
 
         .gallery-cta-pending {
@@ -2220,75 +2223,110 @@
             }
         }
 
-        /* Bannière mise en avant : Discord officiel Néolysium HQ */
-        .gallery-highlight {
+        /* Grande zone capture d'écran, à côté de la carte Néolysium uniquement */
+        .gallery-featured-row {
             display: flex;
+            gap: 2rem;
+            align-items: stretch;
             flex-wrap: wrap;
-            background: var(--card-bg);
-            border: 2px solid var(--primary-cyan);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
-            overflow: hidden;
-            margin-bottom: 1rem;
         }
 
-        .gallery-highlight-banner {
-            flex: 0 0 240px;
-            min-height: 220px;
+        .gallery-featured-row .gallery-card {
+            flex: 1 1 380px;
+            max-width: 420px;
+        }
+
+        /* Fenêtre "navigateur" qui encadre la capture, façon mockup d'app */
+        .gallery-featured-shot {
+            flex: 2 1 480px;
+            min-height: 340px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 35px rgba(0, 255, 255, 0.1), inset 0 0 60px rgba(124, 58, 237, 0.06);
+            overflow: hidden;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-featured-shot:hover {
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 45px rgba(0, 255, 255, 0.2), inset 0 0 60px rgba(124, 58, 237, 0.08);
+        }
+
+        /* Barre de titre façon fenêtre d'app, au-dessus de la capture */
+        .shot-chrome {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.7rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .shot-chrome-dots {
+            display: flex;
+            gap: 0.4rem;
+            flex-shrink: 0;
+        }
+
+        .shot-chrome-dots span {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .shot-chrome-dots span:nth-child(1) { background: var(--primary-pink); }
+        .shot-chrome-dots span:nth-child(2) { background: var(--secondary-amber); }
+        .shot-chrome-dots span:nth-child(3) { background: var(--primary-cyan); }
+
+        .shot-chrome-title {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Zone image : jamais de recadrage, l'image reste entière et centrée */
+        .shot-frame {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            background: var(--darker-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .gallery-card-icon.static {
-            position: static;
-            transform: none;
-            width: 110px;
-            height: 110px;
-            font-size: 2.2rem;
-            border: 3px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .gallery-highlight-body {
-            flex: 1 1 320px;
-            padding: 2.5rem;
-        }
-
-        .gallery-highlight-body h3 {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            margin: 0.8rem 0 1rem;
-        }
-
-        .gallery-highlight-body p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-        }
-
-        @media (max-width: 600px) {
-            .gallery-highlight-banner {
-                flex: 0 0 auto;
-                width: 100%;
-                min-height: 140px;
-            }
-
-            .gallery-highlight-body {
-                padding: 1.5rem;
-            }
-        }
-
-        /* Capture d'écran optionnelle dans une carte galerie */
-        .gallery-screenshot {
-            width: 100%;
-            border: 1px solid var(--border-color);
-            margin-bottom: 1.2rem;
             overflow: hidden;
-            background: #000;
+            padding: 0.6rem;
         }
 
-        .gallery-screenshot img {
+        .gallery-featured-shot img {
             width: 100%;
+            height: 100%;
+            object-fit: contain;
             display: block;
+        }
+
+        .gallery-shot-placeholder {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0 1rem;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 700px) {
+            .gallery-featured-row .gallery-card {
+                max-width: 100%;
+            }
+
+            .gallery-featured-shot {
+                min-height: 220px;
+            }
         }
