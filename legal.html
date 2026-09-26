@@ -278,10 +278,18 @@
     <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
 
     <script>
-        // Active tab highlight based on scroll position
+        // Active tab highlight based on scroll position & dynamic navbar sticky offset
         (function () {
             var tabs = document.querySelectorAll('.legal-tab');
             var docs = document.querySelectorAll('.legal-doc');
+            var tabsContainer = document.querySelector('.legal-tabs');
+            var nav = document.querySelector('nav');
+
+            function updateTabsPosition() {
+                if (nav && tabsContainer) {
+                    tabsContainer.style.top = nav.offsetHeight + 'px';
+                }
+            }
 
             function setActiveTab() {
                 var scrollPos = window.scrollY + 200;
@@ -297,7 +305,12 @@
             }
 
             window.addEventListener('scroll', setActiveTab);
-            window.addEventListener('load', setActiveTab);
+            window.addEventListener('load', function () {
+                updateTabsPosition();
+                setActiveTab();
+            });
+            window.addEventListener('resize', updateTabsPosition);
+            updateTabsPosition();
         })();
     </script>
 </body>
