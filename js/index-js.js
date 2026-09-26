@@ -535,7 +535,7 @@ contactFormEl.addEventListener("submit", async function(e) {
             document.getElementById("contact-form").reset();
             if (typeof turnstile !== "undefined") turnstile.reset();
 
-            window.location.href = "confirmation.html";
+            window.location.href = "/confirmation";
         } else {
             setFieldError("message", "");
             const turnstileError = document.getElementById("turnstile-error");
