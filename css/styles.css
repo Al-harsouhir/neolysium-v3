@@ -26,7 +26,7 @@
         }
 
         html {
-            overflow-x: hidden;
+            overflow-x: clip;
             width: 100%;
         }
 
@@ -35,7 +35,7 @@
             background: var(--darker-bg);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
+            overflow-x: clip;
             width: 100%;
             max-width: 100vw;
         }
@@ -1699,48 +1699,57 @@
             content: '← ';
         }
 
-        /* Tabs to switch between the two documents */
+        /* Tabs to switch between legal documents */
         .legal-tabs {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
             width: 100%;
             box-sizing: border-box;
-            padding: 0 2rem 2rem;
+            padding: 1rem 2rem 1.25rem;
             position: sticky;
-            top: 78px;
+            top: 70px;
             left: 0;
             right: 0;
             z-index: 500;
-            background: var(--darker-bg);
+            background: rgba(10, 10, 22, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
         }
 
         .legal-tab {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.04);
             color: var(--text-secondary);
-            padding: 0.9rem 2rem;
-            border: 2px solid var(--border-color);
+            padding: 0.85rem 1.8rem;
             text-decoration: none;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            clip-path: polygon(15px 0%, 100% 0%, calc(100% - 15px) 100%, 0% 100%);
+            letter-spacing: 1.5px;
+            font-size: 0.82rem;
+            transition: all 0.25s ease;
+            clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+            border: none;
+            outline: none;
+            position: relative;
         }
 
         .legal-tab:hover {
+            background: rgba(0, 243, 255, 0.12);
             color: var(--primary-cyan);
-            border-color: var(--primary-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+            transform: translateY(-1px);
         }
 
         .legal-tab.active {
             color: var(--darker-bg);
             background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.45);
+            font-weight: 800;
+            transform: translateY(-1px);
         }
 
         .legal-page {
@@ -1828,8 +1837,9 @@
 
         @media (max-width: 768px) {
             .legal-tabs {
-                top: 0;
-                padding-top: 1rem;
+                top: 65px;
+                padding: 0.75rem 1rem;
+                gap: 0.5rem;
             }
 
             .legal-doc {
