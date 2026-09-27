@@ -644,11 +644,13 @@ if (document.readyState === "loading") {
         initializeDevWarningModal();
         initializeFaqAccordion();
         initializeLightbox();
+        initializeEmailCopy();
     });
 } else {
     initializeDevWarningModal();
     initializeFaqAccordion();
     initializeLightbox();
+    initializeEmailCopy();
 }
 
 // FAQ Accordion
@@ -747,6 +749,57 @@ function initializeLightbox() {
         }
     });
 }
+
+// Système de copie rapide d'e-mail avec toast notification
+function initializeEmailCopy() {
+    let toast = document.getElementById("cyberToast");
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "cyberToast";
+        toast.className = "cyber-toast";
+        toast.innerHTML = '<i class="fa-solid fa-check"></i> <span>Adresse e-mail copiée dans le presse-papiers !</span>';
+        document.body.appendChild(toast);
+    }
+
+    let toastTimeout = null;
+
+    function showToast(email) {
+        if (toastTimeout) clearTimeout(toastTimeout);
+        toast.innerHTML = `<i class="fa-solid fa-check"></i> <span><strong>${email}</strong> copié dans le presse-papiers !</span>`;
+        toast.classList.add("show");
+
+        toastTimeout = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 3200);
+    }
+
+    document.querySelectorAll("[data-copy-email]").forEach(el => {
+        el.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const email = el.getAttribute("data-copy-email") || "contact@neolysium.eu";
+            
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(email);
+                } else {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = email;
+                    textArea.style.position = "fixed";
+                    textArea.style.left = "-999999px";
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(textArea);
+                }
+                showToast(email);
+            } catch (err) {
+                showToast(email);
+            }
+        });
+    });
+}
+
 
 
 
