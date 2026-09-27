@@ -41,20 +41,27 @@ export default {
         );
       }
 
-      // Vérifier le token Turnstile auprès de l'API Cloudflare
+      // Vérifier le token Turnstile auprès de l'API Cloudflare (standard FormData officiel)
+      const clientIp = request.headers.get("CF-Connecting-IP") || "";
+      const verifyFormData = new FormData();
+      verifyFormData.append("secret", env.TURNSTILE_SECRET_KEY);
+      verifyFormData.append("response", turnstileToken);
+      if (clientIp) {
+        verifyFormData.append("remoteip", clientIp);
+      }
+
       const verifyRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          secret: env.TURNSTILE_SECRET_KEY,
-          response: turnstileToken,
-        }),
+        body: verifyFormData,
       });
       const verifyData = await verifyRes.json();
 
       if (!verifyData.success) {
         return new Response(
-          JSON.stringify({ error: "Captcha ou vérification invalide" }),
+          JSON.stringify({ 
+            error: "Captcha ou vérification invalide",
+            details: verifyData["error-codes"] || []
+          }),
           { status: 403, headers: corsHeaders }
         );
       }
@@ -76,18 +83,15 @@ export default {
         : message;
 
       // Construction de l'embed Discord (sans émojis, style épuré et professionnel)
+      // On omet volontairement username et avatar_url pour que Discord utilise
+      // automatiquement le nom et le logo que vous avez configurés sur le webhook dans Discord.
       const discordPayload = {
-        username: "Néolysium Relay",
-        avatar_url: "https://neolysium.eu/images/neolysium-preview.png",
         embeds: [
           {
             title: "NOUVELLE COMMANDE // NEOLYSIUM",
             url: "https://neolysium.eu",
             description: "Un nouveau projet Discord a été soumis via le terminal web de **neolysium.eu**.",
             color: 62463, // 0x00F3FF en décimal (Cyan Néolysium)
-            thumbnail: {
-              url: "https://neolysium.eu/images/neolysium-preview.png"
-            },
             fields: [
               {
                 name: "N° de commande",
@@ -131,8 +135,7 @@ export default {
               }
             ],
             footer: {
-              text: "Néolysium System Relay // Transmission chiffrée",
-              icon_url: "https://neolysium.eu/images/neolysium-preview.png"
+              text: "Néolysium • neolysium.eu"
             },
             timestamp: new Date().toISOString()
           }
