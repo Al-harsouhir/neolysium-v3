@@ -432,6 +432,30 @@ function isValidEmail(value) {
     }
 });
 
+// Gestion de la case "Autre bot"
+const botOtherCheck = document.getElementById("bot-other-check");
+const botOtherWrapper = document.getElementById("other-bot-wrapper");
+const botOtherInput = document.getElementById("bot-other-input");
+
+if (botOtherCheck && botOtherWrapper) {
+    botOtherCheck.addEventListener("change", function() {
+        if (this.checked) {
+            botOtherWrapper.style.display = "block";
+            if (botOtherInput) botOtherInput.focus();
+        } else {
+            botOtherWrapper.style.display = "none";
+        }
+    });
+}
+
+if (botOtherInput && botOtherCheck) {
+    botOtherInput.addEventListener("input", function() {
+        if (this.value.trim().length > 0 && !botOtherCheck.checked) {
+            botOtherCheck.checked = true;
+        }
+    });
+}
+
 const contactFormEl = document.getElementById("contact-form");
 if (contactFormEl) {
 contactFormEl.addEventListener("submit", async function(e) {
@@ -454,6 +478,16 @@ contactFormEl.addEventListener("submit", async function(e) {
     const delay = delayEl ? delayEl.value : "Standard (24h à 72h)";
 
     const selectedBots = Array.from(document.querySelectorAll('input[name="bots"]:checked')).map(cb => cb.value);
+
+    // Prise en compte du bot personnalisé "Autre"
+    if (botOtherCheck && botOtherCheck.checked) {
+        const otherName = botOtherInput ? botOtherInput.value.trim() : "";
+        if (otherName) {
+            selectedBots.push(`Autre : ${otherName}`);
+        } else {
+            selectedBots.push("Autre bot");
+        }
+    }
 
     const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
     const turnstileToken = turnstileInput ? turnstileInput.value : "";
@@ -496,9 +530,8 @@ contactFormEl.addEventListener("submit", async function(e) {
     }
 
     const submitBtn = document.querySelector(".btn-submit");
-    const originalBtnHtml = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span>Transmission neuronale en cours...</span> <i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i>';
+    submitBtn.textContent = "Transmission en cours...";
 
     try {
         const payload = {
@@ -534,6 +567,7 @@ contactFormEl.addEventListener("submit", async function(e) {
             }));
 
             document.getElementById("contact-form").reset();
+            if (botOtherWrapper) botOtherWrapper.style.display = "none";
             if (typeof turnstile !== "undefined") turnstile.reset();
 
             window.location.href = "/confirmation";
@@ -553,7 +587,7 @@ contactFormEl.addEventListener("submit", async function(e) {
         }
     } finally {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHtml;
+        submitBtn.textContent = "Envoyer ma Commande";
     }
 });
 }

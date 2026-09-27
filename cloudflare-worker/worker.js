@@ -75,13 +75,13 @@ export default {
         ? message.substring(0, 1017) + "..." 
         : message;
 
-      // Construction de l'embed Discord Cyberpunk
+      // Construction de l'embed Discord (sans émojis, style épuré et professionnel)
       const discordPayload = {
         username: "Néolysium Relay",
         avatar_url: "https://neolysium.eu/images/neolysium-preview.png",
         embeds: [
           {
-            title: "⚡ NOUVELLE COMMANDE REÇUE // NÉOLYSIUM",
+            title: "NOUVELLE COMMANDE // NEOLYSIUM",
             url: "https://neolysium.eu",
             description: "Un nouveau projet Discord a été soumis via le terminal web de **neolysium.eu**.",
             color: 62463, // 0x00F3FF en décimal (Cyan Néolysium)
@@ -90,48 +90,48 @@ export default {
             },
             fields: [
               {
-                name: "🆔 N° de commande",
+                name: "N° de commande",
                 value: `\`${orderNumber}\``,
                 inline: true
               },
               {
-                name: "👤 Client Discord",
+                name: "Client Discord",
                 value: `**${name}**`,
                 inline: true
               },
               {
-                name: "📧 E-mail de contact",
+                name: "E-mail de contact",
                 value: `[${email}](mailto:${email})`,
                 inline: true
               },
               {
-                name: "🛠️ Type de prestation",
+                name: "Type de prestation",
                 value: serviceType || "Création complète",
                 inline: true
               },
               {
-                name: "🏷️ Thématique",
+                name: "Thématique",
                 value: theme || "Gaming / Multi-gaming",
                 inline: true
               },
               {
-                name: "⏱️ Délai souhaité",
+                name: "Délai souhaité",
                 value: delay || "Standard (24h à 72h)",
                 inline: true
               },
               {
-                name: "🤖 Modules & Bots sélectionnés",
+                name: "Modules & Bots sélectionnés",
                 value: formattedBots,
                 inline: false
               },
               {
-                name: "📝 Cahier des charges & Précisions",
+                name: "Cahier des charges & Précisions",
                 value: sanitizedMessage,
                 inline: false
               }
             ],
             footer: {
-              text: "Néolysium System Relay • Transmission chiffrée",
+              text: "Néolysium System Relay // Transmission chiffrée",
               icon_url: "https://neolysium.eu/images/neolysium-preview.png"
             },
             timestamp: new Date().toISOString()

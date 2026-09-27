@@ -435,13 +435,13 @@
                             <label for="theme">Thématique du serveur</label>
                             <div class="select-wrapper">
                                 <select id="theme" name="theme">
-                                    <option value="Gaming / Multi-gaming">🎮 Gaming / Multi-gaming</option>
-                                    <option value="Communautaire / Chill">☕ Communautaire & Chill</option>
-                                    <option value="Streamer / Créateur de contenu">📺 Streamer / Créateur de contenu</option>
-                                    <option value="E-Sport / Compétition">🏆 E-Sport & Compétition</option>
-                                    <option value="Roleplay (RP)">🎭 Roleplay (RP / GTA / etc.)</option>
-                                    <option value="Professionnel / Marque / Projet">💼 Projet & Entreprise</option>
-                                    <option value="Autre">✨ Autre (à préciser ci-dessous)</option>
+                                    <option value="Gaming / Multi-gaming">Gaming / Multi-gaming</option>
+                                    <option value="Communautaire / Chill">Communautaire / Chill</option>
+                                    <option value="Streamer / Créateur de contenu">Streamer / Créateur de contenu</option>
+                                    <option value="E-Sport / Compétition">E-Sport / Compétition</option>
+                                    <option value="Roleplay (RP)">Roleplay (RP)</option>
+                                    <option value="Professionnel / Projet">Professionnel / Projet</option>
+                                    <option value="Autre">Autre (préciser dans la description)</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down select-chevron"></i>
                             </div>
@@ -451,9 +451,9 @@
                             <label for="delay">Délai souhaité</label>
                             <div class="select-wrapper">
                                 <select id="delay" name="delay">
-                                    <option value="Standard (24h à 72h)">⚡ Standard (24h à 72h)</option>
-                                    <option value="Sans urgence / Flexible">⏳ Flexible / Pas d'urgence</option>
-                                    <option value="Express (Prioritaire)">🔥 Express (Prioritaire)</option>
+                                    <option value="Standard (24h à 72h)">Standard (24h à 72h)</option>
+                                    <option value="Flexible / Pas d'urgence">Flexible / Pas d'urgence</option>
+                                    <option value="Express (Prioritaire)">Express (Prioritaire)</option>
                                 </select>
                                 <i class="fa-solid fa-chevron-down select-chevron"></i>
                             </div>
@@ -504,6 +504,17 @@
                                     <small>Sécurité anti-raid (sur demande)</small>
                                 </span>
                             </label>
+                            <label class="cyber-check-chip" id="bot-other-chip">
+                                <input type="checkbox" id="bot-other-check" name="bot_other_toggle">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>Autre bot</strong>
+                                    <small>Préciser ci-dessous</small>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="other-bot-wrapper" id="other-bot-wrapper" style="display: none;">
+                            <input type="text" id="bot-other-input" name="bot_other_input" placeholder="Précise le nom du bot souhaité (ex: Ticket Tool, ProBot, Carl-bot...)">
                         </div>
                     </div>
 
@@ -516,10 +527,7 @@
                     
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0RM-38Ob8yl-i5"></div>
                     <span class="field-error" id="turnstile-error"></span>
-                    <button type="submit" class="btn-primary btn-submit">
-                        <span>Envoyer ma Commande</span>
-                        <i class="fa-solid fa-paper-plane" style="margin-left: 6px;"></i>
-                    </button>
+                    <button type="submit" class="btn-primary btn-submit">Envoyer ma Commande</button>
                 </div>
             </form>
         </div>
