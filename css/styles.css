@@ -23,6 +23,8 @@
             --primary-pink: #ff00ff;
             --primary-green: #0DEAA8;
             --secondary-green: #006B4F;
+            --artist-yellow: #F4C837;
+            --artist-orange: #FE6727;
         }
 
         html {
@@ -2527,6 +2529,7 @@
         .gallery-gradient-2 { background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple)); }
         .gallery-gradient-3 { background: linear-gradient(135deg, var(--primary-green), var(--secondary-green)); }
         .gallery-gradient-4 { background: linear-gradient(135deg, var(--primary-cyan), var(--primary-pink)); }
+        .gallery-gradient-5 { background: linear-gradient(135deg, var(--artist-yellow), var(--artist-orange)); }
 
         .gallery-card-icon {
             width: 64px;

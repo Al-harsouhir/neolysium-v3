@@ -837,6 +837,9 @@ function initializeThemePreselection() {
     } else if (lowerParam.includes("communaut") || lowerParam.includes("chill")) {
         targetValue = "Communautaire / Chill";
         contextNote = "Bonjour, je souhaite commander un serveur Discord Communautaire. ";
+    } else if (lowerParam.includes("artiste") || lowerParam.includes("art") || lowerParam.includes("graphis") || lowerParam.includes("illustra")) {
+        targetValue = "Artiste / Créatif";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord pour Artiste / Créatif (dans le style de la démo Atelier Nova). ";
     } else if (lowerParam.includes("esport") || lowerParam.includes("e-sport")) {
         targetValue = "E-Sport / Compétition";
     } else if (lowerParam.includes("rp") || lowerParam.includes("roleplay")) {
