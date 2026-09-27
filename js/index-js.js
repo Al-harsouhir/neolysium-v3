@@ -643,10 +643,12 @@ if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", () => {
         initializeDevWarningModal();
         initializeFaqAccordion();
+        initializeLightbox();
     });
 } else {
     initializeDevWarningModal();
     initializeFaqAccordion();
+    initializeLightbox();
 }
 
 // FAQ Accordion
@@ -699,5 +701,52 @@ function initializeFaqAccordion() {
         });
     });
 }
+
+// Visualiseur Plein Écran (Lightbox) pour la Galerie
+function initializeLightbox() {
+    const lightbox = document.getElementById("cyberLightbox");
+    const lightboxImg = document.getElementById("lightboxImage");
+    const lightboxCaption = document.getElementById("lightboxCaption");
+    const lightboxClose = document.getElementById("lightboxClose");
+    const lightboxOverlay = document.getElementById("lightboxOverlay");
+
+    if (!lightbox || !lightboxImg) return;
+
+    function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        if (lightboxCaption) {
+            lightboxCaption.textContent = alt ? `Aperçu HD — ${alt}` : "Aperçu HD — Serveur Néolysium";
+        }
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+    }
+
+    // Clic sur le cadre de capture ou tout élément marqué [data-zoomable]
+    document.querySelectorAll(".shot-frame, [data-zoomable]").forEach(trigger => {
+        trigger.addEventListener("click", () => {
+            const img = trigger.querySelector("img");
+            if (img && img.src) {
+                openLightbox(img.src, img.getAttribute("alt"));
+            }
+        });
+    });
+
+    if (lightboxClose) lightboxClose.addEventListener("click", closeLightbox);
+    if (lightboxOverlay) lightboxOverlay.addEventListener("click", closeLightbox);
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active")) {
+            closeLightbox();
+        }
+    });
+}
+
 
 
