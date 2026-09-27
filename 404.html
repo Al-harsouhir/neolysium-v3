@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Signal Introuvable // Néolysium</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="images/Neolysium-logo.svg">
+    <meta name="description" content="Erreur 404 — La page ou la coordonnée demandée n'existe pas dans le réseau Néolysium.">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#00f3ff">
+</head>
+<body id="top">
+    <!-- Background Elements -->
+    <section>
+        <div class="cyber-bg">
+            <div class="cyber-gradient"></div>
+            <div class="matrix-rain" id="matrixRain"></div>
+        </div>
+
+        <div class="particles" id="particlesContainer"></div>
+
+        <div class="data-streams" id="dataStreams"></div>
+
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+        <div class="grid-overlay">
+            <div class="grid-lines"></div>
+            <div class="grid-glow"></div>
+        </div>
+
+        <div class="scanlines"></div>
+        <div class="noise-overlay"></div>
+    </section>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">Néolysium</a>
+            <ul class="nav-links">
+                <li><a href="/#features">Singularité</a></li>
+                <li><a href="/#pricing">Offres</a></li>
+                <li><a href="/#faq">FAQ</a></li>
+                <li><a href="/galerie">Galerie</a></li>
+            </ul>
+            <div class="nav-bottom">
+                <a href="/#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+            <button class="mobile-menu-button" id="mobileMenuBtn" aria-label="Ouvrir le menu">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <section>
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-header">
+                <a href="/" class="mobile-menu-logo">Néolysium</a>
+                <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fermer le menu">✕</button>
+            </div>
+            <nav class="mobile-menu-nav">
+                <ul>
+                    <li><a href="/#features">Singularité</a></li>
+                    <li><a href="/#pricing">Offres</a></li>
+                    <li><a href="/#faq">FAQ</a></li>
+                    <li><a href="/galerie">Galerie</a></li>
+                    <li><a href="/#commande">Commande</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-cta">
+                <a href="/#commande" class="cyber-button">Zone de Commande</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 404 Section -->
+    <main class="error-page-wrapper">
+        <div class="error-terminal">
+            <div class="error-chrome">
+                <div class="error-chrome-dots">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="error-chrome-title">TERMINAL_SYS // ERREUR_404.SYS</div>
+            </div>
+
+            <div class="error-body">
+                <div class="error-badge">
+                    <span class="pulse-dot"></span>
+                    <span>SIGNAL PERDU // COORDONNÉES INVALIDES</span>
+                </div>
+
+                <div>
+                    <h1 class="glitch-404" data-text="404">404</h1>
+                </div>
+
+                <h2 class="error-title">Signal Introuvable dans le Réseau</h2>
+
+                <p class="error-desc">
+                    La route ou le salon demandé n'existe pas, a été déplacé ou a succombé à une anomalie quantique. Aucune donnée n'a été corrompue.
+                </p>
+
+                <div class="error-console">
+                    <p><span class="error-console-prompt">&gt; DIAGNOSTIC_SYSTEM:</span></p>
+                    <p>[ERR_HTTP_404] Resource not found at endpoint requested.</p>
+                    <p>[STATUS] Neural connection active. Rerouting recommended.</p>
+                </div>
+
+                <div class="error-actions">
+                    <a href="/" class="btn-primary">Retour à l'Accueil</a>
+                    <a href="/galerie" class="btn-secondary">Explorer la Galerie</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="/legal#mentions">Mentions Légales</a>
+                <span class="footer-separator">•</span>
+                <a href="/legal#confidentialite">Politique Confidentialité</a>
+                <span class="footer-separator">•</span>
+                <a href="/legal#cgv">Conditions d'utilisation</a>
+                <span class="footer-separator">•</span>
+                <a href="/#faq">FAQ</a>
+                <span class="footer-separator">•</span>
+                <button type="button" class="footer-link-btn" data-copy-email="contact@neolysium.eu" title="Copier l'adresse de support">Contact Support</button>
+            </div>
+            <div class="footer-bottom">
+                <p>© <span class="current-year"></span> Néolysium. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#top" class="scroll-top-btn" id="scrollTopBtn" aria-label="Retour en haut"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <script src="js/index-js.js"></script>
+    <script src="https://kit.fontawesome.com/ed2b8500a5.js" crossorigin="anonymous"></script>
+</body>
+</html>
