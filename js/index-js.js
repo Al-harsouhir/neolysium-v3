@@ -645,12 +645,14 @@ if (document.readyState === "loading") {
         initializeFaqAccordion();
         initializeLightbox();
         initializeEmailCopy();
+        initializeThemePreselection();
     });
 } else {
     initializeDevWarningModal();
     initializeFaqAccordion();
     initializeLightbox();
     initializeEmailCopy();
+    initializeThemePreselection();
 }
 
 // FAQ Accordion
@@ -800,6 +802,67 @@ function initializeEmailCopy() {
     });
 }
 
+// Pré-sélection intelligente de la thématique depuis la Galerie ou lien externe
+function initializeThemePreselection() {
+    const themeSelect = document.getElementById("theme");
+    if (!themeSelect) return;
 
+    // Récupérer le paramètre "theme" depuis la query string (?theme=...) ou le hash (#commande?theme=...)
+    const searchParams = new URLSearchParams(window.location.search);
+    let themeParam = searchParams.get("theme");
 
+    if (!themeParam && window.location.hash.includes("?")) {
+        const hashParts = window.location.hash.split("?");
+        if (hashParts.length > 1) {
+            const hashParams = new URLSearchParams(hashParts[1]);
+            themeParam = hashParams.get("theme");
+        }
+    }
 
+    if (!themeParam) return;
+
+    const lowerParam = themeParam.toLowerCase();
+    let targetValue = "";
+    let contextNote = "";
+
+    if (lowerParam.includes("gaming")) {
+        targetValue = "Gaming / Multi-gaming";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord orienté Gaming (dans le style de la démo Aurora Gaming). ";
+    } else if (lowerParam.includes("stream") || lowerParam.includes("createur") || lowerParam.includes("créateur")) {
+        targetValue = "Streamer / Créateur de contenu";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord pour Streamer / Créateur de contenu (dans le style de la démo Créateur Hub). ";
+    } else if (lowerParam.includes("communaut") || lowerParam.includes("etude") || lowerParam.includes("étude") || lowerParam.includes("chill")) {
+        targetValue = "Communautaire / Chill";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord Communautaire / Étude (dans le style de la démo Study Net). ";
+    } else if (lowerParam.includes("esport") || lowerParam.includes("e-sport")) {
+        targetValue = "E-Sport / Compétition";
+    } else if (lowerParam.includes("rp") || lowerParam.includes("roleplay")) {
+        targetValue = "Roleplay (RP)";
+    } else if (lowerParam.includes("projet") || lowerParam.includes("pro")) {
+        targetValue = "Professionnel / Projet";
+    }
+
+    if (targetValue) {
+        themeSelect.value = targetValue;
+    }
+
+    const messageField = document.getElementById("message");
+    if (contextNote && messageField && (!messageField.value || messageField.value.trim() === "")) {
+        messageField.value = contextNote;
+    }
+
+    // Défilement fluide vers le formulaire de commande si la page contient #commande
+    if (window.location.hash.includes("commande")) {
+        const commandeSection = document.getElementById("commande");
+        if (commandeSection) {
+            setTimeout(() => {
+                commandeSection.scrollIntoView({ behavior: "smooth" });
+            }, 300);
+        }
+    }
+}
+
+// Écouter également les changements d'ancre si l'utilisateur navigue au sein de la page
+window.addEventListener("hashchange", () => {
+    initializeThemePreselection();
+});
