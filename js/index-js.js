@@ -831,9 +831,12 @@ function initializeThemePreselection() {
     } else if (lowerParam.includes("stream") || lowerParam.includes("createur") || lowerParam.includes("créateur")) {
         targetValue = "Streamer / Créateur de contenu";
         contextNote = "Bonjour, je souhaite commander un serveur Discord pour Streamer / Créateur de contenu (dans le style de la démo Créateur Hub). ";
-    } else if (lowerParam.includes("communaut") || lowerParam.includes("etude") || lowerParam.includes("étude") || lowerParam.includes("chill")) {
+    } else if (lowerParam.includes("etudiant") || lowerParam.includes("étudiant") || lowerParam.includes("etude") || lowerParam.includes("étude") || lowerParam.includes("scolaire")) {
+        targetValue = "Étudiant / Scolaire";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord Étudiant (dans le style de la démo Study Net). ";
+    } else if (lowerParam.includes("communaut") || lowerParam.includes("chill")) {
         targetValue = "Communautaire / Chill";
-        contextNote = "Bonjour, je souhaite commander un serveur Discord Communautaire / Étude (dans le style de la démo Study Net). ";
+        contextNote = "Bonjour, je souhaite commander un serveur Discord Communautaire. ";
     } else if (lowerParam.includes("esport") || lowerParam.includes("e-sport")) {
         targetValue = "E-Sport / Compétition";
     } else if (lowerParam.includes("rp") || lowerParam.includes("roleplay")) {
