@@ -20,35 +20,6 @@ function initializeMobileMenu() {
         mobileMenu.classList.add('active');
         mobileMenuOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
-        
-        // Reset and trigger animations for links
-        mobileMenuLinks.forEach((link, index) => {
-            if (link) {
-                link.style.animation = 'none';
-                link.style.opacity = '0';
-                link.style.transform = 'translateX(20px)';
-                
-                // Apply animation with delay
-                setTimeout(() => {
-                    if (link) {
-                        link.style.animation = `slideInLeft 0.4s ease forwards`;
-                    }
-                }, 250 + (index * 100));
-            }
-        });
-        
-        // Animate CTA button
-        if (mobileMenuCta) {
-            mobileMenuCta.style.animation = 'none';
-            mobileMenuCta.style.opacity = '0';
-            mobileMenuCta.style.transform = 'translateY(20px)';
-            
-            setTimeout(() => {
-                if (mobileMenuCta) {
-                    mobileMenuCta.style.animation = 'slideInUp 0.4s ease forwards';
-                }
-            }, 100);
-        }
     }
 
     function closeMobileMenu() {
@@ -583,3 +554,86 @@ if (scrollTopBtn) {
         }
     });
 }
+
+// Pop-up d'avertissement : Site en cours de développement
+function initializeDevWarningModal() {
+    const modal = document.getElementById("devWarningModal");
+    const acceptBtn = document.getElementById("devWarningAccept");
+    if (!modal || !acceptBtn) return;
+
+    const hasAcknowledged = sessionStorage.getItem("neolysium_dev_ack");
+
+    if (!hasAcknowledged) {
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    acceptBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        sessionStorage.setItem("neolysium_dev_ack", "true");
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+        initializeDevWarningModal();
+        initializeFaqAccordion();
+    });
+} else {
+    initializeDevWarningModal();
+    initializeFaqAccordion();
+}
+
+// FAQ Accordion
+function initializeFaqAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    if (!faqItems.length) return;
+
+    faqItems.forEach(item => {
+        const questionBtn = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon i');
+        if (!questionBtn || !answer) return;
+
+        questionBtn.addEventListener('click', () => {
+            const isCurrentlyActive = item.classList.contains('active');
+
+            // Close other open FAQ items (smooth accordion)
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                    const otherBtn = otherItem.querySelector('.faq-question');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherIcon = otherItem.querySelector('.faq-icon i');
+                    if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                    if (otherAnswer) otherAnswer.style.maxHeight = null;
+                    if (otherIcon) {
+                        otherIcon.classList.remove('fa-minus');
+                        otherIcon.classList.add('fa-plus');
+                    }
+                }
+            });
+
+            if (isCurrentlyActive) {
+                item.classList.remove('active');
+                questionBtn.setAttribute('aria-expanded', 'false');
+                answer.style.maxHeight = null;
+                if (icon) {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            } else {
+                item.classList.add('active');
+                questionBtn.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 30 + 'px';
+                if (icon) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                }
+            }
+        });
+    });
+}
+
+
