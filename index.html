@@ -371,27 +371,155 @@
             
             <form class="contact-form-wrapper" id="contact-form" novalidate>
                 <div class="contact-form">
-                    <div class="form-group" id="pseudo-group">
-                        <label for="pseudo">Pseudo Discord</label>
-                        <input type="text" id="pseudo" name="pseudo" placeholder="arsenale">
-                        <span class="field-error" id="pseudo-error"></span>
+                    <!-- Pseudo & Email en grille -->
+                    <div class="form-row">
+                        <div class="form-group" id="pseudo-group">
+                            <label for="pseudo">Pseudo Discord <span class="required-mark">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-brands fa-discord input-icon"></i>
+                                <input type="text" id="pseudo" name="pseudo" placeholder="arsenale ou arsenale#0000" autocomplete="off">
+                            </div>
+                            <span class="field-error" id="pseudo-error"></span>
+                        </div>
+                        
+                        <div class="form-group" id="email-group">
+                            <label for="email">Adresse E-Mail <span class="required-mark">*</span></label>
+                            <div class="input-with-icon">
+                                <i class="fa-solid fa-envelope input-icon"></i>
+                                <input type="email" id="email" name="email" placeholder="ton.email@domaine.fr" autocomplete="email">
+                            </div>
+                            <span class="field-error" id="email-error"></span>
+                        </div>
                     </div>
-                    
-                    <div class="form-group" id="email-group">
-                        <label for="email">E-Mail</label>
-                        <input type="email" id="email" name="email" placeholder="your.id@neolysium.eu">
-                        <span class="field-error" id="email-error"></span>
+
+                    <!-- Type de prestation / projet -->
+                    <div class="form-group" id="serviceType-group">
+                        <label>Type de prestation <span class="required-mark">*</span></label>
+                        <div class="cyber-radio-grid">
+                            <label class="cyber-option-card">
+                                <input type="radio" name="serviceType" value="Création complète (nouveau serveur)" checked>
+                                <div class="cyber-option-content">
+                                    <span class="option-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                                    <div class="option-text">
+                                        <strong>Création complète</strong>
+                                        <small>Serveur créé de A à Z</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cyber-option-card">
+                                <input type="radio" name="serviceType" value="Refonte / Amélioration de serveur">
+                                <div class="cyber-option-content">
+                                    <span class="option-icon"><i class="fa-solid fa-arrows-rotate"></i></span>
+                                    <div class="option-text">
+                                        <strong>Refonte globale</strong>
+                                        <small>Restructuration existante</small>
+                                    </div>
+                                </div>
+                            </label>
+                            <label class="cyber-option-card">
+                                <input type="radio" name="serviceType" value="Configuration ciblée / Bots & Sécurité">
+                                <div class="cyber-option-content">
+                                    <span class="option-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                                    <div class="option-text">
+                                        <strong>Bots & Sécurité</strong>
+                                        <small>Ajouts & réglages précis</small>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                    
+
+                    <!-- Thématique & Délai en grille -->
+                    <div class="form-row">
+                        <div class="form-group" id="theme-group">
+                            <label for="theme">Thématique du serveur</label>
+                            <div class="select-wrapper">
+                                <select id="theme" name="theme">
+                                    <option value="Gaming / Multi-gaming">🎮 Gaming / Multi-gaming</option>
+                                    <option value="Communautaire / Chill">☕ Communautaire & Chill</option>
+                                    <option value="Streamer / Créateur de contenu">📺 Streamer / Créateur de contenu</option>
+                                    <option value="E-Sport / Compétition">🏆 E-Sport & Compétition</option>
+                                    <option value="Roleplay (RP)">🎭 Roleplay (RP / GTA / etc.)</option>
+                                    <option value="Professionnel / Marque / Projet">💼 Projet & Entreprise</option>
+                                    <option value="Autre">✨ Autre (à préciser ci-dessous)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="delay-group">
+                            <label for="delay">Délai souhaité</label>
+                            <div class="select-wrapper">
+                                <select id="delay" name="delay">
+                                    <option value="Standard (24h à 72h)">⚡ Standard (24h à 72h)</option>
+                                    <option value="Sans urgence / Flexible">⏳ Flexible / Pas d'urgence</option>
+                                    <option value="Express (Prioritaire)">🔥 Express (Prioritaire)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-chevron"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modules & Bots souhaités -->
+                    <div class="form-group" id="bots-group">
+                        <label>Modules & Bots souhaités <span class="label-hint">(coche selon tes besoins)</span></label>
+                        <div class="cyber-checkbox-grid">
+                            <label class="cyber-check-chip">
+                                <input type="checkbox" name="bots" value="John-Bot (Règlement & Tickets)">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>John-Bot</strong>
+                                    <small>Règlement & Tickets</small>
+                                </span>
+                            </label>
+                            <label class="cyber-check-chip">
+                                <input type="checkbox" name="bots" value="DraftBot (Bienvenue & Vocaux temp.)">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>DraftBot</strong>
+                                    <small>Bienvenue & Vocaux temp.</small>
+                                </span>
+                            </label>
+                            <label class="cyber-check-chip">
+                                <input type="checkbox" name="bots" value="Statbot (Stats & Salons compteurs)">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>Statbot</strong>
+                                    <small>Stats & Salons compteurs</small>
+                                </span>
+                            </label>
+                            <label class="cyber-check-chip">
+                                <input type="checkbox" name="bots" value="Arcane (Niveaux XP & Rôles)">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>Arcane</strong>
+                                    <small>Niveaux XP & Rôles</small>
+                                </span>
+                            </label>
+                            <label class="cyber-check-chip highlight-chip">
+                                <input type="checkbox" name="bots" value="Wick (Sécurité anti-raid & protection)">
+                                <span class="chip-box"><i class="fa-solid fa-check"></i></span>
+                                <span class="chip-label">
+                                    <strong>Wick</strong>
+                                    <small>Sécurité anti-raid (sur demande)</small>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Description / Cahier des charges -->
                     <div class="form-group" id="message-group">
-                        <label for="message">Description de ta commande</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Décris le serveur ou la config que tu veux (offre choisie, style, besoins particuliers...)"></textarea>
+                        <label for="message">Cahier des charges & Précisions <span class="required-mark">*</span></label>
+                        <textarea id="message" name="message" rows="5" placeholder="Décris les détails de ton projet : nom envisagé pour le serveur, rôles ou salons spécifiques, couleurs/thème souhaité, lien de ton serveur actuel si refonte, etc."></textarea>
                         <span class="field-error" id="message-error"></span>
                     </div>
                     
                     <div class="cf-turnstile" data-sitekey="0x4AAAAAAE0RM-38Ob8yl-i5"></div>
                     <span class="field-error" id="turnstile-error"></span>
-                    <button type="submit" class="btn-primary btn-submit">Envoyer ma Commande</button>
+                    <button type="submit" class="btn-primary btn-submit">
+                        <span>Envoyer ma Commande</span>
+                        <i class="fa-solid fa-paper-plane" style="margin-left: 6px;"></i>
+                    </button>
                 </div>
             </form>
         </div>

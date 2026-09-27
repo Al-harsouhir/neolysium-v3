@@ -144,10 +144,43 @@
                 return div.innerHTML;
             }
 
+            var botsHtml = '';
+            if (Array.isArray(order.bots) && order.bots.length > 0) {
+                botsHtml = order.bots.map(function(b) { return '• ' + escapeHtml(b); }).join('<br>');
+            } else if (order.bots && typeof order.bots === 'string') {
+                botsHtml = escapeHtml(order.bots);
+            }
+
+            var extraRows = '';
+            if (order.serviceType) {
+                extraRows += '<div class="confirmation-recap-row">' +
+                    '<span class="confirmation-recap-label">Prestation</span>' +
+                    '<span class="confirmation-recap-value">' + escapeHtml(order.serviceType) + '</span>' +
+                '</div>';
+            }
+            if (order.theme) {
+                extraRows += '<div class="confirmation-recap-row">' +
+                    '<span class="confirmation-recap-label">Thématique</span>' +
+                    '<span class="confirmation-recap-value">' + escapeHtml(order.theme) + '</span>' +
+                '</div>';
+            }
+            if (order.delay) {
+                extraRows += '<div class="confirmation-recap-row">' +
+                    '<span class="confirmation-recap-label">Délai souhaité</span>' +
+                    '<span class="confirmation-recap-value">' + escapeHtml(order.delay) + '</span>' +
+                '</div>';
+            }
+            if (botsHtml) {
+                extraRows += '<div class="confirmation-recap-row">' +
+                    '<span class="confirmation-recap-label">Bots & Modules</span>' +
+                    '<span class="confirmation-recap-value">' + botsHtml + '</span>' +
+                '</div>';
+            }
+
             contentEl.innerHTML =
                 '<div class="confirmation-icon"><i class="fa-solid fa-check"></i></div>' +
                 '<h1 class="confirmation-title">Commande enregistrée</h1>' +
-                '<p class="confirmation-subtitle">Merci ! Ta commande a bien été transmise. On te recontacte directement sur Discord, à l\'adresse indiquée ci-dessous, pour la suite.</p>' +
+                '<p class="confirmation-subtitle">Merci ! Ta commande a bien été transmise au terminal Néolysium. On analyse ton projet et on te recontacte directement sur Discord pour la suite.</p>' +
                 '<div class="confirmation-order-number">N° ' + escapeHtml(order.orderNumber || '—') + '</div>' +
                 '<div class="confirmation-recap">' +
                     '<h3>Récapitulatif de ta demande</h3>' +
@@ -159,8 +192,9 @@
                         '<span class="confirmation-recap-label">E-mail</span>' +
                         '<span class="confirmation-recap-value">' + escapeHtml(order.email) + '</span>' +
                     '</div>' +
+                    extraRows +
                     '<div class="confirmation-recap-row">' +
-                        '<span class="confirmation-recap-label">Description</span>' +
+                        '<span class="confirmation-recap-label">Cahier des charges</span>' +
                         '<span class="confirmation-recap-value">' + escapeHtml(order.message) + '</span>' +
                     '</div>' +
                 '</div>';

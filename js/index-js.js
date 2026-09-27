@@ -442,7 +442,21 @@ contactFormEl.addEventListener("submit", async function(e) {
     const pseudo = document.getElementById("pseudo").value.trim();
     const email = document.getElementById("email").value.trim();
     const message = document.getElementById("message").value.trim();
-    const turnstileToken = document.querySelector('[name="cf-turnstile-response"]').value;
+    
+    // Nouveaux champs structurés
+    const serviceTypeEl = document.querySelector('input[name="serviceType"]:checked');
+    const serviceType = serviceTypeEl ? serviceTypeEl.value : "Création complète (nouveau serveur)";
+
+    const themeEl = document.getElementById("theme");
+    const theme = themeEl ? themeEl.value : "Gaming / Multi-gaming";
+
+    const delayEl = document.getElementById("delay");
+    const delay = delayEl ? delayEl.value : "Standard (24h à 72h)";
+
+    const selectedBots = Array.from(document.querySelectorAll('input[name="bots"]:checked')).map(cb => cb.value);
+
+    const turnstileInput = document.querySelector('[name="cf-turnstile-response"]');
+    const turnstileToken = turnstileInput ? turnstileInput.value : "";
 
     let hasError = false;
     let firstInvalidField = null;
@@ -454,23 +468,23 @@ contactFormEl.addEventListener("submit", async function(e) {
     }
 
     if (!email) {
-        setFieldError("email", "E-mail manquant.");
+        setFieldError("email", "Adresse e-mail manquante.");
         hasError = true;
         firstInvalidField = firstInvalidField || "email";
     } else if (!isValidEmail(email)) {
-        setFieldError("email", "Format d'e-mail invalide.");
+        setFieldError("email", "Format d'adresse e-mail invalide.");
         hasError = true;
         firstInvalidField = firstInvalidField || "email";
     }
 
     if (!message) {
-        setFieldError("message", "Description de la commande manquante.");
+        setFieldError("message", "Merci de décrire les besoins de ton projet.");
         hasError = true;
         firstInvalidField = firstInvalidField || "message";
     }
 
     if (!turnstileToken) {
-        setFieldError("turnstile", "Merci de valider le captcha avant d'envoyer.");
+        setFieldError("turnstile", "Merci de valider la sécurité Cloudflare avant d'envoyer.");
         hasError = true;
     }
 
@@ -482,25 +496,41 @@ contactFormEl.addEventListener("submit", async function(e) {
     }
 
     const submitBtn = document.querySelector(".btn-submit");
+    const originalBtnHtml = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.textContent = "Envoi en cours...";
+    submitBtn.innerHTML = '<span>Transmission neuronale en cours...</span> <i class="fa-solid fa-spinner fa-spin" style="margin-left: 8px;"></i>';
 
     try {
+        const payload = {
+            name: pseudo,
+            email: email,
+            message: message,
+            turnstileToken: turnstileToken,
+            serviceType: serviceType,
+            theme: theme,
+            delay: delay,
+            bots: selectedBots
+        };
+
         const res = await fetch(workerURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: pseudo, email: email, message: message, turnstileToken })
+            body: JSON.stringify(payload)
         });
 
         const data = await res.json();
 
         if (res.ok) {
-            // On transmet le récap de la commande à la page de confirmation
+            // On transmet le récapitulatif complet de la commande à la page de confirmation
             sessionStorage.setItem("neolysium_last_order", JSON.stringify({
                 orderNumber: data.orderNumber,
                 pseudo: pseudo,
                 email: email,
-                message: message
+                message: message,
+                serviceType: serviceType,
+                theme: theme,
+                delay: delay,
+                bots: selectedBots
             }));
 
             document.getElementById("contact-form").reset();
@@ -511,19 +541,19 @@ contactFormEl.addEventListener("submit", async function(e) {
             setFieldError("message", "");
             const turnstileError = document.getElementById("turnstile-error");
             if (turnstileError) {
-                turnstileError.textContent = "Erreur lors de l'envoi. Réessaie plus tard.";
+                turnstileError.textContent = "Erreur lors de l'envoi de la commande. Réessaie dans quelques instants.";
                 turnstileError.classList.add("visible");
             }
         }
     } catch (err) {
         const turnstileError = document.getElementById("turnstile-error");
         if (turnstileError) {
-            turnstileError.textContent = "Erreur réseau. Vérifie ta connexion.";
+            turnstileError.textContent = "Erreur réseau. Vérifie ta connexion Internet.";
             turnstileError.classList.add("visible");
         }
     } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = "Envoyer ma Commande";
+        submitBtn.innerHTML = originalBtnHtml;
     }
 });
 }

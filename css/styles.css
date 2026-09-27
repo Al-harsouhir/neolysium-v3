@@ -1279,7 +1279,7 @@
         }
 
         .contact-form-wrapper {
-            max-width: 600px;
+            max-width: 780px;
             margin: 0 auto;
             margin-top: 4rem;
         }
@@ -1291,6 +1291,19 @@
             backdrop-filter: blur(10px);
             clip-path: polygon(30px 0%, 100% 0%, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0% 100%, 0% 30px);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
         }
 
         .form-group {
@@ -1306,6 +1319,318 @@
             font-size: 0.9rem;
             margin-bottom: 0.8rem;
             text-shadow: 0 0 10px var(--primary-cyan);
+        }
+
+        .required-mark {
+            color: var(--primary-pink);
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        .label-hint {
+            text-transform: none;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            letter-spacing: 0;
+            margin-left: 6px;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon .input-icon {
+            position: absolute;
+            left: 1.25rem;
+            color: var(--primary-cyan);
+            opacity: 0.8;
+            font-size: 1.05rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-with-icon input {
+            padding-left: 3.2rem !important;
+        }
+
+        .input-with-icon:focus-within .input-icon {
+            color: var(--primary-pink);
+            opacity: 1;
+            text-shadow: 0 0 10px var(--primary-pink);
+        }
+
+        .select-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 1rem 2.8rem 1rem 1.25rem;
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            clip-path: polygon(10px 0%, 100% 0%, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0% 100%, 0% 10px);
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            cursor: pointer;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .form-group select option {
+            background: #090e17;
+            color: #ffffff;
+            padding: 0.6rem;
+        }
+
+        .select-chevron {
+            position: absolute;
+            right: 1.25rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-cyan);
+            pointer-events: none;
+            font-size: 0.85rem;
+            transition: transform 0.3s ease;
+        }
+
+        .select-wrapper:focus-within .select-chevron {
+            transform: translateY(-50%) rotate(180deg);
+            color: var(--primary-pink);
+        }
+
+        /* Cyberpunk Radio Grid (Prestations) */
+        .cyber-radio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.85rem;
+        }
+
+        @media (max-width: 680px) {
+            .cyber-radio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cyber-option-card {
+            position: relative;
+            cursor: pointer;
+            display: block;
+            margin: 0;
+        }
+
+        .cyber-option-card input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .cyber-option-content {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.9rem 1rem;
+            background: rgba(0, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            clip-path: polygon(8px 0%, 100% 0%, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0% 100%, 0% 8px);
+            transition: all 0.25s ease;
+            height: 100%;
+        }
+
+        .cyber-option-content .option-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 6px;
+            background: rgba(0, 255, 255, 0.08);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cyan);
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .cyber-option-content .option-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.25;
+        }
+
+        .cyber-option-content .option-text strong {
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+        }
+
+        .cyber-option-content .option-text small {
+            color: var(--text-secondary);
+            font-size: 0.74rem;
+            margin-top: 3px;
+        }
+
+        .cyber-option-card:hover .cyber-option-content {
+            border-color: rgba(0, 255, 255, 0.5);
+            background: rgba(0, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .cyber-option-card input[type="radio"]:checked + .cyber-option-content {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.12);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.25);
+        }
+
+        .cyber-option-card input[type="radio"]:checked + .cyber-option-content .option-icon {
+            background: var(--primary-cyan);
+            color: #050811;
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 12px var(--primary-cyan);
+        }
+
+        .cyber-option-card input[type="radio"]:checked + .cyber-option-content .option-text strong {
+            color: var(--primary-cyan);
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Cyberpunk Checkboxes Grid (Bots) */
+        .cyber-checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.75rem;
+        }
+
+        @media (max-width: 480px) {
+            .cyber-checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cyber-check-chip {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 0.95rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            clip-path: polygon(6px 0%, 100% 0%, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0% 100%, 0% 6px);
+            transition: all 0.25s ease;
+            margin: 0;
+            user-select: none;
+        }
+
+        .cyber-check-chip input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+            pointer-events: none;
+        }
+
+        .chip-box {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .chip-box i {
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .chip-label {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .chip-label strong {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .chip-label small {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .cyber-check-chip:hover {
+            border-color: rgba(0, 255, 255, 0.4);
+            background: rgba(0, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .cyber-check-chip:has(input[type="checkbox"]:checked) {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 255, 255, 0.09);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+        }
+
+        .cyber-check-chip input[type="checkbox"]:checked ~ .chip-box {
+            background: var(--primary-cyan);
+            border-color: var(--primary-cyan);
+            box-shadow: 0 0 8px var(--primary-cyan);
+        }
+
+        .cyber-check-chip input[type="checkbox"]:checked ~ .chip-box i {
+            color: #050811;
+        }
+
+        .cyber-check-chip input[type="checkbox"]:checked ~ .chip-label strong {
+            color: var(--primary-cyan);
+        }
+
+        /* Wick anti-raid special pink highlight */
+        .cyber-check-chip.highlight-chip {
+            border-color: rgba(255, 0, 255, 0.3);
+        }
+
+        .cyber-check-chip.highlight-chip:hover {
+            border-color: rgba(255, 0, 255, 0.6);
+            background: rgba(255, 0, 255, 0.05);
+        }
+
+        .cyber-check-chip.highlight-chip:has(input[type="checkbox"]:checked) {
+            border-color: var(--primary-pink);
+            background: rgba(255, 0, 255, 0.09);
+            box-shadow: 0 0 12px rgba(255, 0, 255, 0.25);
+        }
+
+        .cyber-check-chip.highlight-chip input[type="checkbox"]:checked ~ .chip-box {
+            background: var(--primary-pink);
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 8px var(--primary-pink);
+        }
+
+        .cyber-check-chip.highlight-chip input[type="checkbox"]:checked ~ .chip-label strong {
+            color: var(--primary-pink);
         }
 
         .form-group input,
@@ -1337,16 +1662,20 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 130px;
         }
 
         .btn-submit {
             width: 100%;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-top: 1rem;
             border: none;
             transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .btn-submit:hover {
