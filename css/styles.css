@@ -3069,9 +3069,79 @@
             top: 2px;
         }
 
+        /* FAQ Contact Support Callout */
+        .faq-contact-box {
+            margin-top: 3.5rem;
+            padding: 1.8rem 2.2rem;
+            background: rgba(0, 243, 255, 0.03);
+            border: 1px dashed rgba(0, 243, 255, 0.3);
+            clip-path: polygon(15px 0%, 100% 0%, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0% 100%, 0% 15px);
+            display: flex;
+            align-items: center;
+            gap: 1.8rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .faq-contact-box:hover {
+            border-color: var(--primary-cyan);
+            background: rgba(0, 243, 255, 0.06);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
+        }
+
+        .faq-contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            background: rgba(0, 243, 255, 0.08);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-cyan);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
+        }
+
+        .faq-contact-text h3 {
+            font-size: 1.05rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.5px;
+        }
+
+        .faq-contact-text p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .faq-contact-text a {
+            color: var(--primary-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 243, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .faq-contact-text a:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            text-shadow: 0 0 8px var(--primary-cyan);
+        }
+
         @media (max-width: 768px) {
             .faq {
                 padding: 80px 1rem;
+            }
+            .faq-contact-box {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding: 1.4rem;
             }
             .faq-question {
                 padding: 1.2rem 1.2rem;
